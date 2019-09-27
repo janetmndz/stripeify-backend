@@ -1,6 +1,5 @@
 class Track < ApplicationRecord
 
-
     ## This will make a new track but not save it to our database
     def self.new_from_spotify_track(spotify_track)
         Track.new(

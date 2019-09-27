@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  namespace :api do
+namespace :api do
     namespace :v1 do
-      resources :tracks do
-        collection do
-          get :emo_songs
-        end
-      end
+      resources :tracks, only: [:index]
+      resources :users
+      resources :playlists
+      resources :votes, only: [:create, :show, :update, :destroy]
     end
   end
 end
