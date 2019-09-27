@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_09_26_202617) do
     t.string "artist"
     t.string "image"
     t.string "preview"
+    t.string "external_url"
     t.string "spotify_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
