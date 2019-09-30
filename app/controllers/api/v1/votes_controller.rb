@@ -1,5 +1,5 @@
 class Api::V1::VotesController < ApplicationController
-    before_action :find_vote, only: [:show, :update]
+    before_action :find_vote, only: [:show, :update, :destroy]
     def index
         @votes = Vote.all
         render json: @votes
@@ -10,21 +10,23 @@ class Api::V1::VotesController < ApplicationController
     end
 
     def create 
-        byebug
+        @vote = Vote.create(params.permit(:upvote, :playlist_id, :user_id))
+        render json: @vote
     end
 
     def update
-        @vote.update(vote_params)
+        @vote.update(params.permit(:upvote))
         render json: @vote
+    end
+
+    def destroy 
+        @vote.destroy
+        render json: {message: "This vote has been destroyed"}
     end
     
     private
     
     def find_vote
         @vote = Vote.find(params[:id])
-    end
-
-    def vote_params
-        params.permit(:upvote)
     end
 end
