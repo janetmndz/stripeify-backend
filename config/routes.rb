@@ -4,7 +4,7 @@ namespace :api do
       resources :tracks, only: [:index]
       resources :users
       resources :playlists
-      resources :votes, only: [:create, :show, :update, :destroy]
+      resources :votes, only: [:index, :create, :show, :update, :destroy]
     end
   end
 end
