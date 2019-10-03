@@ -12,6 +12,13 @@ class Api::V1::PlaylistsController < ApplicationController
 
     def create
         @playlist = Playlist.create(playlist_params)
+
+        @tracks = params[:tracks]
+
+        @tracks.each do |track_id|
+            PlaylistSong.create(playlist_id: @playlist.id , track_id: track_id)
+        end
+        
         if @playlist.valid?
             render json: @playlist
         else
