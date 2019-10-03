@@ -1,5 +1,5 @@
 class Api::V1::PlaylistsController < ApplicationController
-    before_action :find_playlist, only: [:show]
+    before_action :find_playlist, only: [:show, :destroy]
     
     def index
         @playlists = Playlist.all
@@ -17,6 +17,11 @@ class Api::V1::PlaylistsController < ApplicationController
         else
             render json: {message: @playlist.errors.full_messages}
         end
+    end
+
+    def destroy
+        @playlist.destroy
+        render json: {message: "This was delted!"}
     end
 
     private
